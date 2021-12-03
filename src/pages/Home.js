@@ -3,8 +3,9 @@ import { inject, observer } from 'mobx-react'
 import { Row, Col } from 'antd';
 import NavBar from '../components/NavBar';
 import Button from '../components/Button';
-
 import TLogo from '../img/transport-logo.png'
+
+import Footer from '../components/Footer';
 
 const Home = inject('store')(observer(({ store }) => {
     return (
@@ -38,6 +39,7 @@ const Home = inject('store')(observer(({ store }) => {
                     </Col>
                 </Row>
             </header>
+            
         </div>
     );
 }))
