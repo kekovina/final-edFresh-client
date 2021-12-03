@@ -32,7 +32,6 @@ const ShowCase = () => {
     return (
         <div>
             <div className="green-line"></div>
-            <NavBar/>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
                     <div className="showcase__title">Витрина проектов</div>

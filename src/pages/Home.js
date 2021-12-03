@@ -5,12 +5,13 @@ import NavBar from '../components/NavBar';
 import Button from '../components/Button';
 import TLogo from '../img/transport-logo.png'
 
-import Footer from '../components/Footer';
+
+
+import ProjectCard from '../components/ProjectCard';
 
 const Home = inject('store')(observer(({ store }) => {
     return (
         <div>
-            <NavBar/>
             <header>
                 <Row justify='center'>
                     <Col sm={22} md={10} xxl={6}>
@@ -39,7 +40,25 @@ const Home = inject('store')(observer(({ store }) => {
                     </Col>
                 </Row>
             </header>
-            
+            <Row justify='center'>
+                    <Col sm={22} md={12} xxl={12}>
+                        <div className="section-title">Проекты</div>
+                        <Row gutter={[16, 20]}>
+                            {store.projectsCategory.map(({title, image, id}) => (
+
+                                <Col span={8}  key={title}>
+                                    <ProjectCard title={title} image={image} id={id}/>
+                                </Col>
+
+                            ))}
+                        </Row>
+                    </Col>
+                </Row>
+                <Row justify='center'>
+                    <Col sm={22} md={12} xxl={12}>
+                        <div className="section-title">Стартапам</div>
+                    </Col>
+                </Row>
         </div>
     );
 }))

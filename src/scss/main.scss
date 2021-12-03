@@ -11,6 +11,21 @@
 *{
     font-family: 'MoscowSans';
 }
-.container{
-      
+#root{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;  
+}
+.green-line{
+    position: absolute;
+    width: 60px;
+    height: calc( 100vh - 115px);
+    left: 0px;
+    top: 115px;
+
+    background: #00A19B;
+}
+main{
+    flex: 1
 }

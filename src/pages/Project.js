@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
+
 import compare from '../img/compare.svg'
 import favorite from '../img/favorite.svg'
 import request from '../img/request.svg'
@@ -22,7 +22,6 @@ const Project = () => {
     return (
         <div>
             <div className="green-line"></div>
-            <NavBar/>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
                     <div className="project">

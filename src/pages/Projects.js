@@ -1,15 +1,16 @@
-import React from 'react';
-import NavBar from '../components/NavBar'
+import React, { useEffect } from 'react';
+import { inject, observer } from 'mobx-react'
 import { Input, Row, Col } from 'antd';
 import Button from '../components/Button';
 import { Radio } from 'antd';
 import ShowCaseCard from '../components/ShowCaseCard'
 import testimage from '../img/test.png'
+import { Link } from 'react-router-dom'
 import testlogo from '../img/testlogo.png'
 
 const { Search } = Input;
 
-const ShowCase = ({ match }) => {
+const Projects =  inject('store')(observer(({ store, match }) => {
     const testdata = {
         image: testimage,
         logo: testlogo,
@@ -19,15 +20,20 @@ const ShowCase = ({ match }) => {
         status: 'Масштабирование'
     }
     
-      const onSearch = value => console.log(value);
+    useEffect(() => {
+        if(!store.projects.length){
+            store.getProjectsByCategory(match.params.category)
+        }
+    }, [])
+
+    const onSearch = value => console.log(value);
     return (
         <div>
             <div className="green-line"></div>
-            <NavBar/>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <div className="showcase__title">{match.params.category}</div>
+                        <div className="showcase__title">{store.projectsCategory.filter( item => item.id == match.params.category)[0].title}</div>
                         <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button>
                     </div>
                     <Search  
@@ -39,18 +45,22 @@ const ShowCase = ({ match }) => {
             </Row>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}> 
-                    <Radio.Group defaultValue="0" size="large" style={{marginTop: 48}}>
-                        <Radio.Button value="0">Доступный и комфортный городской транспорт</Radio.Button> 
-                        <Radio.Button value="1">Безопасность дорожного движения</Radio.Button>
-                        <Radio.Button value="2">Цифровые технологии в транспорте</Radio.Button>
-                        <Radio.Button value="3">Здоровые улицы и экология</Radio.Button>
-                        <Radio.Button value="4">Новые виды мобильности</Radio.Button>
-                    </Radio.Group>
+                    <Radio.Group  defaultValue={match.params.category} size="large" style={{marginTop: 48}}>
+                        {store.projectsCategory.map(({title, id}) => (
+                            <Radio.Button value={`${id}`} onClick={() => window.location = `/projects/${id}`}>{title}</Radio.Button>
+                        ))}
+                        </Radio.Group>
                 </Col>
             </Row>
             <Row justify="center" style={{marginTop: 50}}>
                 <Col sm={18} md={16} xxl={12}> 
-                    <ShowCaseCard data={testdata}/>
+                    <Row>
+                        {store.projects.map( item => (
+                            <Col>
+                                <ShowCaseCard data={item}/>
+                            </Col>
+                        ))}
+                    </Row>
                 </Col>
             </Row>
             <Row justify="center" style={{marginTop: 50}}>
@@ -62,6 +72,6 @@ const ShowCase = ({ match }) => {
             </Row>
         </div>
     );
-}
+}))
 
-export default ShowCase;
+export default Projects;

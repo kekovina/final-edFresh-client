@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <div className="footer">
             <Row justify = "center">
-                <Col sm={24} md={16} xxl={6}>
+                <Col sm={24} md={16} xxl={12}>
                     <Row justify = "space-between">
                 
                             <Col >
@@ -19,7 +19,7 @@ const Footer = () => {
                             </Col>
                             <Col>
                                 <Row>
-                                    <img  className = "footer__logo" src = {instagram}/>
+                                    <img className = "footer__logo" src = {instagram}/>
                                     <img className = "footer__logo" src = {telegram}/>
                                     <img className = "footer__logo-facebook" src = {facebook}/>
                                 </Row>

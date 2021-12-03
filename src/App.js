@@ -9,10 +9,16 @@ import { Switch, Route } from 'react-router'
 import './scss/main.scss'
 import Projects from './pages/Projects'
 import Project from './pages/Project'
+import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+
 
 function App(){
     return <Provider store={mainStore}>
-        <RoleSelector/>
+        <div>
+            <RoleSelector/>
+            <NavBar/>
+        </div>
         <main>
             <Switch>
                 <Route exact path="/" component={Home}/>
@@ -23,6 +29,7 @@ function App(){
                 <Route exact path="/rates" component={Rates}/>
             </Switch>
         </main>
+        <Footer/>
     </Provider>
 }
 
