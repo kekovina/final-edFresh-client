@@ -23,8 +23,14 @@ const Home = inject('store')(observer(({ store }) => {
                             </div>
                         </div>
                         <div className="header__btn-group">
-                            <Button>Найти проект</Button>
-                            <Button transparent>Подать заявку</Button>
+                            <Row gutter = {[80]}>
+                                <Col>
+                                    <Button>Найти проект</Button>
+                                </Col>
+                                <Col>
+                                    <Button transparent>Подать заявку</Button>
+                                </Col>
+                            </Row>
                         </div>
                     </Col>
                     <Col sm={22} md={6} xxl={6} style={{display: 'flex', justifyContent: 'center'}}>
