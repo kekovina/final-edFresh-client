@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react'
-import { Row, Col } from 'antd';
+import { Row, Col, Modal, Button,  Form, Input } from 'antd';
 import NavBar from '../components/NavBar';
-import Button from '../components/Button';
+import CustomButton from '../components/Button';
 import TLogo from '../img/transport-logo.png'
 
 
@@ -10,8 +10,41 @@ import TLogo from '../img/transport-logo.png'
 import ProjectCard from '../components/ProjectCard';
 
 const Home = inject('store')(observer(({ store }) => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+      setIsModalVisible(true);
+    };
+  
+    const handleOk = () => {
+        form.submit()
+    //   setIsModalVisible(false);
+    };
+  
+    const handleCancel = () => {
+      setIsModalVisible(false);
+    };
+
+    const layoutForm = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 },
+      }; 
+      const onFinish = (values) => {
+        console.log(values);
+      };
+      const validateMessages = {
+        required: '${label} is required!',
+        types: {
+          email: '${label} is not a valid email!',
+          number: '${label} is not a valid number!',
+        },
+        number: {
+          range: '${label} must be between ${min} and ${max}',
+        },
+      };
+      const form = Form.useForm()
     return (
-        <div>
+        <>
             <header>
                 <Row justify='center'>
                     <Col sm={22} md={10} xxl={6}>
@@ -27,11 +60,11 @@ const Home = inject('store')(observer(({ store }) => {
                         <div className="header__btn-group">
                             <Row gutter = {[40]}>
                                 <Col>
-                                    <Button>Найти проект</Button>
+                                    <CustomButton>Найти проект</CustomButton>
                                 </Col>
-                                <Col>
-                                    <Button transparent>Подать заявку</Button>
-                                </Col>
+                                {!store.isAuth && <Col>
+                                    <CustomButton transparent onClick={showModal}>Подать заявку</CustomButton>
+                                </Col>}
                             </Row>
                         </div>
                     </Col>
@@ -59,7 +92,38 @@ const Home = inject('store')(observer(({ store }) => {
                         <div className="section-title">Стартапам</div>
                     </Col>
                 </Row>
-        </div>
+            { !store.isAuth && <Modal 
+            title="Подача заявки" 
+            visible={isModalVisible} 
+            footer={<div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                    <CustomButton transparent key="back" onClick={handleCancel} style={{ width: 100, margin: '0 10px', textAlign: 'center'}}>
+                    Назад
+                    </CustomButton>
+                    <CustomButton onClick={handleOk} style={{ width: 100, margin: '0 10px', textAlign: 'center'}}>
+                    Отправить
+                    </CustomButton>
+                </div>}
+            >
+           
+           <Form form={form} {...layoutForm} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form.Item name="kek" label="Name" rules={[{ required: true }]}>
+                    <Input />
+                </Form.Item>
+                <Form.Item name="kek" label="Email" rules={[{ type: 'email' }]}>
+                    <Input />
+                </Form.Item>
+                
+                <Form.Item name="kek" label="Website">
+                    <Input />
+                </Form.Item>
+                <Form.Item name="kek" label="Introduction">
+                    <Input.TextArea />
+                </Form.Item>
+            </Form>
+            
+            </Modal>}
+            
+        </>
     );
 }))
 

@@ -29,7 +29,7 @@ const Projects =  inject('store')(observer(({ store, match }) => {
 
     const onSearch = value => console.log(value);
     return (
-        <div>
+        <>
             <div className="green-line"></div>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
@@ -57,7 +57,7 @@ const Projects =  inject('store')(observer(({ store, match }) => {
                 <Col sm={18} md={16} xxl={12}> 
                     <Row>
                         {store.projects.map( item => (
-                            <Col>
+                            <Col span={12}>
                                 <ShowCaseCard data={item}/>
                             </Col>
                         ))}
@@ -71,7 +71,7 @@ const Projects =  inject('store')(observer(({ store, match }) => {
                     </div>
                 </Col>
             </Row>
-        </div>
+        </>
     );
 }))
 

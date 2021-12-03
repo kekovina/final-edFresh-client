@@ -30,7 +30,7 @@ const ShowCase = () => {
       );
       const onSearch = value => console.log(value);
     return (
-        <div>
+        <>
             <div className="green-line"></div>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
@@ -68,7 +68,7 @@ const ShowCase = () => {
                     </div>
                 </Col>
             </Row>
-        </div>
+        </>
     );
 }
 
