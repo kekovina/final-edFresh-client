@@ -64,6 +64,7 @@ const Project = inject('store')(observer(({ store, match }) => {
                 setProject({err: 1, text: 'Ошибка загрузки данных'})
             }
         })
+        return () => setProject([])
     }, [])
    
     return (

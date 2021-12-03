@@ -16,7 +16,7 @@ const ShowCaseCard = (props) => {
                             <div className="showcase-card__task">{category?.name}</div>
                             <div className="showcase-card__title">{name}</div>
                             <div className="showcase-card__description">{short_description}</div>
-                            <div className="showcase-card__status">Статус проекта: <br/>{status}</div>
+                            <div className="showcase-card__status">Статус проекта: <br/>{status?.name}</div>
                         </div>
                         <div className="showcase-card__detail">
                             <Link to={`/project/${id}`}>

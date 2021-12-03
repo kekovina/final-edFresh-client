@@ -16,8 +16,8 @@ const Projects =  inject('store')(observer(({ store, match }) => {
     useEffect(() => {
         if(!store.projects.length){
             store.getProjectsByCategory(match.params.category)
-            console.log(match.params.category)
         }
+        return () => store.dropProjects()
     }, [])
     const onSearch = value => console.log(value);
     return (
@@ -27,7 +27,7 @@ const Projects =  inject('store')(observer(({ store, match }) => {
                 <Col sm={18} md={16} xxl={12}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                         <div className="showcase__title">{ hasParams ? store.projectsCategory.filter( item => item.id == match.params.category)[0].title : 'Поиск проекта'}</div>
-                        { hasParams ? <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button> : null}
+                        { hasParams && store.isAuth ? <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button> : null}
                     </div>
                     <Search  
                     placeholder="Начните набирать категорию"

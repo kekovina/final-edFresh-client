@@ -43,6 +43,9 @@ class Store{
          console.log(err)
       })
    }
+   @action dropProjects = () => {
+      this.projects = []
+   }
 
    projectsCategory = [{ title: 'Доступный и комфортный городской транспорт', image: comfort, id: 1},
    { title: 'Безопасность дорожного движения', image: safety, id: 2},
