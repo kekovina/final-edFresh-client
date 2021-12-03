@@ -33,6 +33,7 @@ class Store{
       }).then((data) => {
          if(data.status == 200){
             if(data.data){
+               this.projects = data.data
                return data.data
             } else {
                throw new Error('Empty payload')

@@ -24,7 +24,7 @@ const Project = ({ match }) => {
         })
     }, [])
     return (
-        <div>
+        <>
             <div className="green-line"></div>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
@@ -63,7 +63,7 @@ const Project = ({ match }) => {
                 <Col sm={18} md={16} xxl={12}>
                     <Row>
                         <Col md={12} sm={24}>
-                            <img className="project__logo" src={project?.logo} style={{ minWidth: 150}}/>
+                            <img className="project__logo" src={project?.logo}/>
                             <div className="project__job-title">Деятельность:</div>
                             <div className="project__job">{project?.category.name ?? <Skeleton active={true}/>}</div>
                             <div className="project__url"> {project?.url ? <a href={project?.url}>{project?.url}</a> : <Skeleton active={true}/> }</div>
@@ -71,7 +71,7 @@ const Project = ({ match }) => {
                             <div className="project__about">{project?.short_description ?? <Skeleton active={true}/>}</div>
                         </Col>
                         <Col md={12} sm={24} style={{display: 'flex', justifyContent: 'center'}}>
-                        {project?.image ? <img src={project?.image} style={{maxHeight: 300}}/> : <Skeleton.Image style={{height: 300, width: 300}} active={true}/>}
+                        {project?.images ? <img src={project?.images.replace('[', '').replace(']', '').split(',')[0].replace('\"', '').replace('\"', '')} style={{maxHeight: 300}}/> : <Skeleton.Image style={{height: 300, width: 300}} active={true}/>}
                         </Col>
                     </Row>
                     <Row>
@@ -85,7 +85,7 @@ const Project = ({ match }) => {
                     </Row>
                 </Col>
             </Row>
-        </div>
+        </>
     );
 }
 
