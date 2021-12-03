@@ -1,0 +1,20 @@
+.footer {
+    height: 167px;
+    background-color: #00A19B;
+    width:100%;
+    padding: 30px 0px;
+   
+
+    &__logo{
+        height: 24px;
+        width: 24px;
+    }
+
+    &__logo-facebook{
+        height: 18px;
+    }
+
+    &__logo-left {
+        width: 160px;
+    }
+}
