@@ -34,7 +34,7 @@ const ShowCase = () => {
             <NavBar/>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
-                    <div className="showcase__title">Доступный и комфортный городской транспорт</div>
+                    <div className="showcase__title">Витрина проектов</div>
                     <Search  
                     placeholder="Начните набирать категорию"
                     enterButton={false}
@@ -46,10 +46,11 @@ const ShowCase = () => {
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}> 
                     <Radio.Group defaultValue="0" size="large" style={{marginTop: 48}}>
-                        <Radio.Button value="0">Решения для метрополитена</Radio.Button> 
-                        <Radio.Button value="1">Решения для обратной связи от горожан и учета их предложений</Radio.Button>
-                        <Radio.Button value="2">Решения для наземного транспорта</Radio.Button>
-                        <Radio.Button value="3">Решения для остановочных пунктов, в том числе автономных</Radio.Button>
+                        <Radio.Button value="0">Доступный и комфортный городской транспорт</Radio.Button> 
+                        <Radio.Button value="1">Безопасность дорожного движения</Radio.Button>
+                        <Radio.Button value="2">Цифровые технологии в транспорте</Radio.Button>
+                        <Radio.Button value="3">Здоровые улицы и экология</Radio.Button>
+                        <Radio.Button value="4">Новые виды мобильности</Radio.Button>
                     </Radio.Group>
                 </Col>
             </Row>
