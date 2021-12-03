@@ -11,7 +11,7 @@ const NavBar = () => {
             <Row justify="center">
                 <Col sm={22} md={16} xxl={12}>
                     <div className="navbar__wrap">
-                        <img className="navbar__logo" src={logo}/>
+                        <Link to="/"><img className="navbar__logo" src={logo}/></Link>
                         <nav>
                             <Link to="/showcase"><div>Витрина проектов</div></Link>
                             <div>Стартапам</div>
