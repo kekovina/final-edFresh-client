@@ -4,6 +4,7 @@
     border: 2px solid #00A19B;
     background: #00A19B;
     color: white;
+    padding: 10px 0;
     img{
         width: 20px;
         height: 20px;
@@ -20,13 +21,14 @@
     }
     
     &:hover{
-        background: white;
+        background: transparent;
         color: black;
         cursor: pointer;
     }
     &--transparent{
-        background: white;
+        background: transparent;
         color: black;
+        padding: 0;
         &:hover{
             background: #00A19B;
             color: white;

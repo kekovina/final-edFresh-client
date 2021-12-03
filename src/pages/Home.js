@@ -23,7 +23,7 @@ const Home = inject('store')(observer(({ store }) => {
                             </div>
                         </div>
                         <div className="header__btn-group">
-                            <Row gutter = {[80]}>
+                            <Row gutter = {[40]}>
                                 <Col>
                                     <Button>Найти проект</Button>
                                 </Col>
@@ -34,7 +34,7 @@ const Home = inject('store')(observer(({ store }) => {
                         </div>
                     </Col>
                     <Col sm={22} md={6} xxl={6} style={{display: 'flex', justifyContent: 'center'}}>
-                        <img src={TLogo}/>
+                        <img src={TLogo} style={{maxHeight: 220}}/>
                     </Col>
                 </Row>
             </header>

@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar'
 import { Input, Row, Col } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import { Radio } from 'antd';
+import Button from '../components/Button';
 import ShowCaseCard from '../components/ShowCaseCard'
 import testimage from '../img/test.png'
 import testlogo from '../img/testlogo.png'
@@ -40,7 +41,9 @@ const ShowCase = () => {
                     enterButton={false}
                     size="large"
                     suffix={suffix}
-                    onSearch={onSearch}/>
+                    onSearch={onSearch}
+                    style={{marginTop: '20px'}}
+                    />
                 </Col>
             </Row>
             <Row justify="center">
@@ -57,6 +60,13 @@ const ShowCase = () => {
             <Row justify="center" style={{marginTop: 50}}>
                 <Col sm={18} md={16} xxl={12}> 
                     <ShowCaseCard data={testdata}/>
+                </Col>
+            </Row>
+            <Row justify="center" style={{marginTop: 50}}>
+                <Col sm={18} md={16} xxl={12}> 
+                    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                        <Button transparent style={{width: 'fit-content', border: 'none'}}>Показать ещё</Button>
+                    </div>
                 </Col>
             </Row>
         </div>

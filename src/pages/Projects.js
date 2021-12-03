@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar'
 import { Input, Row, Col } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import Button from '../components/Button';
 import { Radio } from 'antd';
 import ShowCaseCard from '../components/ShowCaseCard'
 import testimage from '../img/test.png'
@@ -26,7 +26,10 @@ const ShowCase = ({ match }) => {
             <NavBar/>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
-                    <div className="showcase__title">{match.params.category}</div>
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <div className="showcase__title">{match.params.category}</div>
+                        <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button>
+                    </div>
                     <Search  
                     placeholder="Начните набирать категорию"
                     enterButton={false}
@@ -48,6 +51,13 @@ const ShowCase = ({ match }) => {
             <Row justify="center" style={{marginTop: 50}}>
                 <Col sm={18} md={16} xxl={12}> 
                     <ShowCaseCard data={testdata}/>
+                </Col>
+            </Row>
+            <Row justify="center" style={{marginTop: 50}}>
+                <Col sm={18} md={16} xxl={12}> 
+                    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                        <Button transparent border={false} style={{width: 'fit-content', border: 'none'}}>Показать ещё</Button>
+                    </div>
                 </Col>
             </Row>
         </div>

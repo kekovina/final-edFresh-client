@@ -45,6 +45,10 @@
         &__detail{
             align-self: flex-end;
         }
+        &__image{
+            width: 200px;
+            overflow: hidden;
+        }
     }
 }
 .card-right{

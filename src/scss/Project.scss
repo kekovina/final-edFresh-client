@@ -1,0 +1,60 @@
+.project{
+    margin: 40px 0;
+    &__title{
+        font-size: 30px;
+        line-height: 35px;
+        letter-spacing: 0.1em;
+        color: $primary-color;
+    }
+    &__top{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__options-group{
+        display: flex;
+        height: fit-content;
+        justify-content: flex-end;
+        & div{
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        & span{
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            margin-left: 5px;
+            color: $secondary-color;
+        }
+    }
+    &__logo{
+        margin-bottom: 20px;
+    }
+    &__job-title{
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 35px;
+    }
+    &__job{
+        margin: 5px 0;
+    }
+    &__url a{
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        color: $primary-color;
+        text-decoration: underline;
+    }
+    &__about{
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        margin-top: 15px
+    }
+}
+.section-title{
+    font-size: 30px;
+    line-height: 35px;
+    color: $primary-color;
+    margin-top: 40px;
+}

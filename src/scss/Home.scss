@@ -17,6 +17,10 @@ header{
     &__btn-group{
         display: flex;
         margin-top: 58px;
-        align-items: stretch;
+        &.custom-btn{
+            font-size: 18px;
+            line-height: 23px;
+            text-align: center;
+        }
     }
 }

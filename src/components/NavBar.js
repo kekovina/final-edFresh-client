@@ -1,11 +1,12 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react'
 import { Row, Col } from 'antd';
 import logo from '../img/logo.png' 
 import '../scss/NavBar.scss';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = inject('store')(observer(({ store }) => {
     return (
         <div className="navbar">
             <Row justify="center">
@@ -18,13 +19,13 @@ const NavBar = () => {
                             <div>Компании</div>
                             <div>Контакты</div>
                         </nav>
-                        <Button transparent>Войти</Button>
+                        {!store.isAuth ? <Button transparent>Войти</Button> : <div></div>}
                     </div>
                 </Col>
             </Row>
         </div>
     )
-}
+}))
 
 
 
