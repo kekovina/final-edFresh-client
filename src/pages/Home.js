@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react'
 import { Row, Col, Modal, Button,  Form, Input } from 'antd';
-import NavBar from '../components/NavBar';
+import { Link } from 'react-router-dom'
 import CustomButton from '../components/Button';
 import TLogo from '../img/transport-logo.png'
 
@@ -33,16 +33,9 @@ const Home = inject('store')(observer(({ store }) => {
         console.log(values);
       };
       const validateMessages = {
-        required: '${label} is required!',
-        types: {
-          email: '${label} is not a valid email!',
-          number: '${label} is not a valid number!',
-        },
-        number: {
-          range: '${label} must be between ${min} and ${max}',
-        },
+        required: 'Мы не сможем помочь вам без этих данных :(',
       };
-      const form = Form.useForm()
+      const [form] = Form.useForm()
     return (
         <>
             <header>
@@ -60,7 +53,7 @@ const Home = inject('store')(observer(({ store }) => {
                         <div className="header__btn-group">
                             <Row gutter = {[40]}>
                                 <Col>
-                                    <CustomButton>Найти проект</CustomButton>
+                                    <Link to="/projects"><CustomButton>Найти проект</CustomButton></Link>
                                 </Col>
                                 {!store.isAuth && <Col>
                                     <CustomButton transparent onClick={showModal}>Подать заявку</CustomButton>
@@ -95,28 +88,42 @@ const Home = inject('store')(observer(({ store }) => {
             { !store.isAuth && <Modal 
             title="Подача заявки" 
             visible={isModalVisible} 
+            onCancel={handleCancel}
             footer={<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <CustomButton transparent key="back" onClick={handleCancel} style={{ width: 100, margin: '0 10px', textAlign: 'center'}}>
+                    <CustomButton transparent key="back" onClick={handleCancel} style={{ width: 150, margin: '0 10px', textAlign: 'center'}}>
                     Назад
                     </CustomButton>
-                    <CustomButton onClick={handleOk} style={{ width: 100, margin: '0 10px', textAlign: 'center'}}>
+                    <CustomButton onClick={handleOk} style={{ width: 150, margin: '0 10px', textAlign: 'center'}}>
                     Отправить
                     </CustomButton>
                 </div>}
+            width={600}
             >
            
-           <Form form={form} {...layoutForm} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-                <Form.Item name="kek" label="Name" rules={[{ required: true }]}>
-                    <Input />
+           <Form form={form} {...layoutForm} name="form" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form.Item name="what_hurts" label="Что болит?" rules={[{ required: true }]}>
+                    <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="kek" label="Email" rules={[{ type: 'email' }]}>
-                    <Input />
+                <Form.Item name="symptoms" label="Как проявляется ваша проблема?"  rules={[{ required: true }]}>
+                    <Input.TextArea />
                 </Form.Item>
                 
-                <Form.Item name="kek" label="Website">
-                    <Input />
+                <Form.Item name="consequences" label="Что будет, если проблему не решать?"  rules={[{ required: true }]}>
+                    <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="kek" label="Introduction">
+                <Form.Item name="reason" label="Почему так происходит?"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="objects" label="У кого болит?"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="deadlines" label="Какой желательный срок решения проблемы"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="what_attempted" label="Пробовали решать?"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="contacts" label="Как с вами связаться?"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
             </Form>

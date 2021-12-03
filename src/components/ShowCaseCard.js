@@ -4,12 +4,11 @@ import DetailedBtn from '../components/DetailedBtn'
 import { Link } from 'react-router-dom'
 
 const ShowCaseCard = (props) => {
-    const { id, image, logo, category, name, short_description, status} = props.data
+    const { id, images, logo, category, name, short_description, status} = props.data
     return (
        
             <div className="showcase__card">
-                    <div className="showcase-card__image">
-                        <img src={image}/>
+                    <div className="showcase-card__image" style={{backgroundImage: `url(${images ? images.replace('[', '').replace(']', '').split(',')[0].replace('\"', '').replace('\"', '') : null})`, backgroundSize: 'cover'}}>
                     </div>
                     <div className="showcase-card__content">
                         <div className="card-right__top">

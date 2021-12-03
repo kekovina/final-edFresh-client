@@ -12,6 +12,14 @@ import { serverURL } from '../config'
 import { data } from 'autoprefixer';
 import { inject, observer } from 'mobx-react'
 
+import zayavka from '../img/status/0.svg'
+import screening from '../img/status/1.svg'
+import scoring from '../img/status/2.svg'
+import expert from '../img/status/3.svg'
+import accelerator from '../img/status/4.svg'
+import pilot from '../img/status/5.svg'
+
+const medals = [zayavka, screening, scoring, expert, accelerator, pilot]
 const { TextArea } = Input;
 
 const Project = inject('store')(observer(({ store, match }) => {
@@ -117,6 +125,14 @@ const Project = inject('store')(observer(({ store, match }) => {
                     <Row>
                         <Col span={24}>
                             <div className="project__status-title section-title">Статус проекта:</div>
+                            <div className="project__status-value">{project?.status.name ?? <Skeleton active={true}/>}</div>
+                            <div className="project__medal-status">
+                                {medals.map((item, index) => {
+                                    if(index+1 < project?.status.id){
+                                        return <img className="project__medal" src={item}/>
+                                    }
+                                })}
+                            </div>
                         </Col>
                         <Col span={24}>
                             <div className="project__effect-title section-title">Эффект для города:</div>

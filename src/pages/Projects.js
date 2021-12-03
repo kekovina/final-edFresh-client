@@ -11,14 +11,7 @@ import testlogo from '../img/testlogo.png'
 const { Search } = Input;
 
 const Projects =  inject('store')(observer(({ store, match }) => {
-    const testdata = {
-        image: testimage,
-        logo: testlogo,
-        task: 'Решения для наземного транспорта',
-        title: 'Traffic Data: узнать все о транспортных потоках',
-        description: 'Программное обеспечение для анализа транспортных потоков по видео.',
-        status: 'Масштабирование'
-    }
+    const hasParams = Object.keys(match.params).length
     
     useEffect(() => {
         if(!store.projects.length){
@@ -26,7 +19,6 @@ const Projects =  inject('store')(observer(({ store, match }) => {
             console.log(match.params.category)
         }
     }, [])
-
     const onSearch = value => console.log(value);
     return (
         <>
@@ -34,8 +26,8 @@ const Projects =  inject('store')(observer(({ store, match }) => {
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <div className="showcase__title">{store.projectsCategory.filter( item => item.id == match.params.category)[0].title}</div>
-                        <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button>
+                        <div className="showcase__title">{ hasParams ? store.projectsCategory.filter( item => item.id == match.params.category)[0].title : 'Поиск проекта'}</div>
+                        { hasParams ? <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button> : null}
                     </div>
                     <Search  
                     placeholder="Начните набирать категорию"
