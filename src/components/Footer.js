@@ -18,7 +18,7 @@ const Footer = () => {
                                     <img className = "footer__logo-left" src = {logo}/>
                             </Col>
                             <Col>
-                                <Row>
+                                <Row justify='center' align='center'>
                                     <img className = "footer__logo" src = {instagram}/>
                                     
                                     <img className = "footer__logo"  src = {telegram}/>

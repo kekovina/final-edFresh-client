@@ -23,6 +23,7 @@ function App(){
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/showcase" component={ShowCase}/>
+                <Route exact path="/projects" component={Projects}/>
                 <Route exact path="/projects/:category" component={Projects}/>
                 <Route exact path="/project/:projectId" component={Project}/>
                 <Route exact path="/company" component={Home}/>
