@@ -1,24 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react'
 import { Input, Row, Col } from 'antd';
 import Button from '../components/Button';
-import { Radio } from 'antd';
+import { Link, useHistory } from 'react-router-dom'
+import { Radio, Empty } from 'antd';
 import ShowCaseCard from '../components/ShowCaseCard'
-import testimage from '../img/test.png'
-import { Link } from 'react-router-dom'
-import testlogo from '../img/testlogo.png'
+import Loader from '../components/Loader'
+import filter from '../img/filter-icon.svg'
 
 const { Search } = Input;
 
 const Projects =  inject('store')(observer(({ store, match }) => {
     const hasParams = Object.keys(match.params).length
+    const [isLoading, setLoading] = useState(true)
+    const [radioValue, setRadioValue] = useState(match.params.category)
+
+    const history = useHistory()
+
+    const filterHandler = () => console.log('e')
+
+    const onChangeRadio = (e) => {
+        history.push('/projects/'+e.target.value)
+        setRadioValue(e.target.value)
+    }
     
     useEffect(() => {
         if(!store.projects.length){
-            store.getProjectsByCategory(match.params.category)
+            store.getProjectsByCategory(match.params.category).then((projects) => {
+                setLoading(false)
+            })
         }
         return () => store.dropProjects()
-    }, [])
+    }, [match.params.category])
     const onSearch = value => console.log(value);
     return (
         <>
@@ -31,28 +44,30 @@ const Projects =  inject('store')(observer(({ store, match }) => {
                     </div>
                     <Search  
                     placeholder="Начните набирать категорию"
-                    enterButton={false}
+                    // enterButton={false}
                     size="large"
+                    suffix={<img src={filter} className={"search__filter-btn"} onClick={filterHandler}/>}
                     onSearch={onSearch}/>
                 </Col>
             </Row>
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}> 
-                    <Radio.Group  defaultValue={match.params.category} size="large" style={{marginTop: 48}}>
+                    <Radio.Group onChange={onChangeRadio} value={radioValue} size="large" style={{marginTop: 48}}>
                         {store.projectsCategory.map(({title, id}) => (
-                            <Radio.Button value={`${id}`} onClick={() => window.location = `/projects/${id}`}>{title}</Radio.Button>
+                            <Radio.Button value={`${id}`} >{title}</Radio.Button>
                         ))}
                         </Radio.Group>
                 </Col>
             </Row>
             <Row justify="center" style={{marginTop: 50}}>
                 <Col sm={18} md={16} xxl={12}> 
-                    <Row>
-                        {store.projects.map( item => (
-                            <Col span={12}>
+                    <Row style={isLoading || !store.projects.length ? {height: !store.projects.length ? 100 : 20, justifyContent: 'center'} : null}>
+                        { isLoading ? <Loader/> 
+                        : store.projects.length ? store.projects.map( item => (
+                            <Col md={12} xxl={8} key={item}>
                                 <ShowCaseCard data={item}/>
                             </Col>
-                        ))}
+                        )) : <Empty description={"Ничего не найдено"}/>}
                     </Row>
                 </Col>
             </Row>

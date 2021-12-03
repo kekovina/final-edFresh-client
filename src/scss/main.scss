@@ -29,3 +29,8 @@
 main{
     flex: 1
 }
+.search{
+    &__filter-btn{
+        cursor: pointer;
+    }
+}

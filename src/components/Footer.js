@@ -18,12 +18,12 @@ const Footer = () => {
                                     <img className = "footer__logo-left" src = {logo}/>
                             </Col>
                             <Col>
-                                <Row justify='center' align='center'>
-                                    <img className = "footer__logo" src = {instagram}/>
+                                <Row style={{alignItems: 'center'}}>
+                                    <img className = "footer__logo" src = {instagram} style={{ margin: '0 10px', minWidth: 10}}/>
                                     
-                                    <img className = "footer__logo"  src = {telegram}/>
+                                    <img className = "footer__logo"  src = {telegram} style={{ margin: '0 10px', minWidth: 10}}/>
                                     
-                                    <img className = "footer__logo-facebook" src = {facebook}/>
+                                    <img className = "footer__logo-facebook" src = {facebook} style={{ margin: '0 10px', minWidth: 10}}/>
                                 </Row>
                             </Col>
                     </Row>
