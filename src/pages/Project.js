@@ -1,28 +1,54 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState, useRef } from 'react';
 import compare from '../img/compare.svg'
 import favorite from '../img/favorite.svg'
 import request from '../img/request.svg'
 import search from '../img/search.svg'
-import { Row, Col, Skeleton } from 'antd';
+import { Row, Col, Skeleton, Popover, Input, Button } from 'antd';
 import testimage from '../img/test.png'
 import testlogo from '../img/testlogo.png'
 import DetailedBtn from '../components/DetailedBtn';
 import axios from 'axios'
 import { serverURL } from '../config'
+import { data } from 'autoprefixer';
+
+const { TextArea } = Input;
 
 const Project = ({ match }) => {
     const [ project, setProject ] = useState(null)
+    const [inpValue, setValue] = useState('')
+
+    var content = (
+        <div>
+            <TextArea  onChange={event => setValue(event.target.value)} defaultValue = {project?.short_description}/>
+            
+            <Button  onClick = {saveHandler} style = {{marginTop:"10px"}}type = "primary">Сохранить</Button>
+        </div>
+    );
+
+    function saveHandler(){
+       axios.put(`${serverURL}/api/projects/${match.params.projectId}`,{
+           short_description: inpValue
+       }).then(res=>{
+           if(res.status == 200) {
+               setProject(res.data)
+           }
+       })
+    }
+
+    
+
     useEffect(() => {
         axios(`${serverURL}/api/projects/${match.params.projectId}`).then(data => {
             if(data.status == 200){
                 const project = data.data
+                
                 setProject(project)
             } else {
                 setProject({err: 1, text: 'Ошибка загрузки данных'})
             }
         })
     }, [])
+   
     return (
         <>
             <div className="green-line"></div>
@@ -68,7 +94,7 @@ const Project = ({ match }) => {
                             <div className="project__job">{project?.category.name ?? <Skeleton active={true}/>}</div>
                             <div className="project__url"> {project?.url ? <a href={project?.url}>{project?.url}</a> : <Skeleton active={true}/> }</div>
                             <div className="project__about-title section-title">О проекте:</div>
-                            <div className="project__about">{project?.short_description ?? <Skeleton active={true}/>}</div>
+                            <Popover content = {content}><div className="project__about" >{project?.short_description ?? <Skeleton active={true}/>}</div></Popover>
                         </Col>
                         <Col md={12} sm={24} style={{display: 'flex', justifyContent: 'center'}}>
                         {project?.images ? <img src={project?.images.replace('[', '').replace(']', '').split(',')[0].replace('\"', '').replace('\"', '')} style={{maxHeight: 300}}/> : <Skeleton.Image style={{height: 300, width: 300}} active={true}/>}
