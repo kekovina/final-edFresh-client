@@ -7,6 +7,7 @@ import ShowCase from './pages/ShowCase'
 import Rates from './pages/Rates'
 import { Switch, Route } from 'react-router'
 import './scss/main.scss'
+import Projects from './pages/Projects'
 
 
 function App(){
@@ -16,7 +17,7 @@ function App(){
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/showcase" component={ShowCase}/>
-                <Route exact path="/category" component={Home}/>
+                <Route exact path="/projects/:category" component={Projects}/>
                 <Route exact path="/company" component={Home}/>
                 <Route exact path="/rates" component={Rates}/>
             </Switch>
