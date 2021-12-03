@@ -20,7 +20,9 @@ const Footer = () => {
                             <Col>
                                 <Row>
                                     <img className = "footer__logo" src = {instagram}/>
-                                    <img className = "footer__logo" src = {telegram}/>
+                                    
+                                    <img className = "footer__logo"  src = {telegram}/>
+                                    
                                     <img className = "footer__logo-facebook" src = {facebook}/>
                                 </Row>
                             </Col>
