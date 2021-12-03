@@ -1,0 +1,55 @@
+.showcase{
+    &__card{
+        width: 480px;
+        height: 280px;
+        display: flex;
+        background: white;
+    }
+    &-card{
+        &__content{
+            padding: 15px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+            & img{
+                max-width: 70px;
+                align-self: flex-end;
+            }
+        }
+        &__task{
+            font-size: 8px;
+            line-height: 16px;
+            color: #022D30;
+            margin-top: 10px;
+        }
+        &__title{
+            font-size: 14px;
+            line-height: 16px;
+            color: #022D30;
+            margin-top: 3px;
+        }
+        &__description{
+            font-size: 12px;
+            line-height: 16px;
+            color: #022D30;
+            margin-top: 10px;
+        }
+        &__status{
+            font-size: 12px;
+            line-height: 16px;
+            color: #A3A7A7;
+            margin-top: 15px;
+        }
+        &__detail{
+            align-self: flex-end;
+        }
+    }
+}
+.card-right{
+    &__top{
+        display: flex;
+        flex-direction: column;
+    }
+}

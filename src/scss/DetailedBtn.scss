@@ -1,0 +1,12 @@
+.detailed-btn{
+    color: #00A19B;
+    cursor: pointer;
+    transition: .25s linear;
+    & svg{
+        margin-left: 5px;
+    }
+    &:hover{
+        transition: .25s linear;
+        transform: translateX(10px);
+    }
+}

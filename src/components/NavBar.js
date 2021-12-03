@@ -3,6 +3,7 @@ import { Row, Col } from 'antd';
 import logo from '../img/logo.png' 
 import '../scss/NavBar.scss';
 import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -12,7 +13,7 @@ const NavBar = () => {
                     <div className="navbar__wrap">
                         <img className="navbar__logo" src={logo}/>
                         <nav>
-                            <div>Витрина проектов</div>
+                            <Link to="/showcase"><div>Витрина проектов</div></Link>
                             <div>Стартапам</div>
                             <div>Компании</div>
                             <div>Контакты</div>

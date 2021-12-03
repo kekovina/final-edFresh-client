@@ -3,9 +3,11 @@ import { Provider } from 'mobx-react'
 import mainStore from './store'
 import RoleSelector from './components/RoleSelector'
 import Home from './pages/Home'
+import ShowCase from './pages/ShowCase'
 import Rates from './pages/Rates'
 import { Switch, Route } from 'react-router'
 import './scss/main.scss'
+
 
 function App(){
     return <Provider store={mainStore}>
@@ -13,7 +15,7 @@ function App(){
         <main>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/startup" component={Home}/>
+                <Route exact path="/showcase" component={ShowCase}/>
                 <Route exact path="/category" component={Home}/>
                 <Route exact path="/company" component={Home}/>
                 <Route exact path="/rates" component={Rates}/>
