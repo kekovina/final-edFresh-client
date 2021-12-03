@@ -5,6 +5,7 @@ import RoleSelector from './components/RoleSelector'
 import Home from './pages/Home'
 import Rates from './pages/Rates'
 import { Switch, Route } from 'react-router'
+import './scss/main.scss'
 
 function App(){
     return <Provider store={mainStore}>

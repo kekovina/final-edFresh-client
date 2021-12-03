@@ -1,0 +1,22 @@
+header{
+    background: linear-gradient(0deg, rgba(0, 161, 155, 0.02), rgba(0, 161, 155, 0.02)), url(../img/header.png);
+    padding: 70px 0;
+}
+.header{
+    &__title{
+        font-size: 60px;
+        line-height: 65px;
+        letter-spacing: 0.1em;
+        color: $primary-color;
+    }
+    &__subtitle{
+        font-size: 18px;
+        line-height: 24px;
+        color: $secondary-color;
+    }
+    &__btn-group{
+        display: flex;
+        margin-top: 58px;
+        align-items: stretch;
+    }
+}
