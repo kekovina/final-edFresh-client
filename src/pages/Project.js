@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import compare from '../img/compare.svg'
 import favorite from '../img/favorite.svg'
 import request from '../img/request.svg'
 import search from '../img/search.svg'
-import { Row, Col } from 'antd';
+import { Row, Col, Skeleton } from 'antd';
 import testimage from '../img/test.png'
 import testlogo from '../img/testlogo.png'
 import DetailedBtn from '../components/DetailedBtn';
+import axios from 'axios'
+import { serverURL } from '../config'
 
-const Project = () => {
-    const testdata = {
-        image: testimage,
-        logo: testlogo,
-        task: 'Решения для наземного транспорта',
-        title: 'Traffic Data: узнать все о транспортных потоках',
-        description: 'Программное обеспечение для анализа транспортных потоков по видео.',
-        status: 'Масштабирование',
-        url: 'https://vk'
-    }
+const Project = ({ match }) => {
+    const [ project, setProject ] = useState(null)
+    useEffect(() => {
+        axios(`${serverURL}/api/projects/${match.params.projectId}`).then(data => {
+            if(data.status == 200){
+                const project = data.data
+                setProject(project)
+            } else {
+                setProject({err: 1, text: 'Ошибка загрузки данных'})
+            }
+        })
+    }, [])
     return (
         <div>
             <div className="green-line"></div>
@@ -26,10 +30,10 @@ const Project = () => {
                 <Col sm={18} md={16} xxl={12}>
                     <div className="project">
                         <div className="project__top">
-                        <Row justify="center">
+                        <Row justify="center"  style={{width: '100%'}}>
                             <Col span={10}>
                                 <div className="project__title">
-                                    {testdata.title}
+                                    {project?.name ?? <Skeleton active={true}/>}
                                 </div>
                             </Col>
                             <Col span={14}>
@@ -59,15 +63,15 @@ const Project = () => {
                 <Col sm={18} md={16} xxl={12}>
                     <Row>
                         <Col md={12} sm={24}>
-                            <img className="project__logo" src={testdata.logo} style={{ minWidth: 150}}/>
+                            <img className="project__logo" src={project?.logo} style={{ minWidth: 150}}/>
                             <div className="project__job-title">Деятельность:</div>
-                            <div className="project__job">{testdata.job}</div>
-                            <div className="project__url"><a href={testdata.url}>{testdata.url}</a></div>
+                            <div className="project__job">{project?.category.name ?? <Skeleton active={true}/>}</div>
+                            <div className="project__url"> {project?.url ? <a href={project?.url}>{project?.url}</a> : <Skeleton active={true}/> }</div>
                             <div className="project__about-title section-title">О проекте:</div>
-                            <div className="project__about">{testdata.description}</div>
+                            <div className="project__about">{project?.short_description ?? <Skeleton active={true}/>}</div>
                         </Col>
-                        <Col md={12} sm={24}>
-                            <img src={testdata.image}/>
+                        <Col md={12} sm={24} style={{display: 'flex', justifyContent: 'center'}}>
+                        {project?.image ? <img src={project?.image} style={{maxHeight: 300}}/> : <Skeleton.Image style={{height: 300, width: 300}} active={true}/>}
                         </Col>
                     </Row>
                     <Row>

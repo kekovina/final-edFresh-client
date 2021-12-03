@@ -28,7 +28,7 @@ class Store{
    @action getProjectsByCategory = (id) => {
       return axios(`${serverURL}/api/projects`, {
          params: {
-            id
+            'categories[]': id
          }
       }).then((data) => {
          if(data.status == 200){
