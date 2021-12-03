@@ -53,6 +53,10 @@ class Store{
       return this.role !== 'guest';
    }
 
+   @computed get isAdmin() {
+      return this.role == "admin";
+   }
+
 }
 
 const store = new Store();

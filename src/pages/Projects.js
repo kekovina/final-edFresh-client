@@ -23,7 +23,7 @@ const Projects =  inject('store')(observer(({ store, match }) => {
     useEffect(() => {
         if(!store.projects.length){
             store.getProjectsByCategory(match.params.category)
-           
+            console.log(match.params.category)
         }
     }, [])
 
