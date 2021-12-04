@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/final-edFresh-client/precache-manifest.b9289c5f03f00f4fe26eb32469c07f84.js"
+  "/final-edFresh-client/precache-manifest.1ba88b4d3bdb254edb32835d51e104cd.js"
 );
 
 self.addEventListener('message', (event) => {

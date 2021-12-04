@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f72c238f779d233165ef4d023be64327",
+    "revision": "e6534cff3a1d39edd5e869bf1efc5de5",
     "url": "/final-edFresh-client/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/final-edFresh-client/static/css/2.ad1b7169.chunk.css"
   },
   {
-    "revision": "3eacb35241edb0631e76",
+    "revision": "2398f64c5e390020f9fb",
     "url": "/final-edFresh-client/static/css/main.610e4560.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/final-edFresh-client/static/js/2.98ce283d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3eacb35241edb0631e76",
-    "url": "/final-edFresh-client/static/js/main.8dc6464c.chunk.js"
+    "revision": "2398f64c5e390020f9fb",
+    "url": "/final-edFresh-client/static/js/main.9fb55510.chunk.js"
   },
   {
     "revision": "d3c04d3f0cc6b9604c36",
