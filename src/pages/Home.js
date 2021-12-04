@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react'
-import { Row, Col, Modal, Button,  Form, Input } from 'antd';
+import { Row, Col, Modal, Button,  Form, Input, message,InputNumber } from 'antd';
 import { Link } from 'react-router-dom'
 import CustomButton from '../components/Button';
 import TLogo from '../img/transport-logo.png'
-
+import { serverURL } from '../config'
+import axios from 'axios'
 
 
 import ProjectCard from '../components/ProjectCard';
+import Axios from 'axios';
 
 const Home = inject('store')(observer(({ store }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -25,12 +27,21 @@ const Home = inject('store')(observer(({ store }) => {
       setIsModalVisible(false);
     };
 
+   
+
     const layoutForm = {
         labelCol: { span: 8 },
         wrapperCol: { span: 16 },
       }; 
       const onFinish = (values) => {
-        console.log(values);
+          console.log(values)
+        axios.post(`${serverURL}/api/projects`,values).then(res=>{
+            if(res.status == 200) {
+                message.success("Заявка заполнена и сохранена")
+            } 
+        }).catch(err=>{
+            message.error("Попробуйте позже...")
+        })
       };
       const validateMessages = {
         required: 'Мы не сможем помочь вам без этих данных :(',
@@ -100,30 +111,50 @@ const Home = inject('store')(observer(({ store }) => {
             width={600}
             >
            
-           <Form form={form} {...layoutForm} name="form" onFinish={onFinish} validateMessages={validateMessages}>
-                <Form.Item name="what_hurts" label="Что болит?" rules={[{ required: true }]}>
+           <Form  form={form} {...layoutForm} name="form" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form.Item name="company_name" label="Название команды/организации" rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="symptoms" label="Как проявляется ваша проблема?"  rules={[{ required: true }]}>
+                <Form.Item name="stages_of_ready_id" label="Стадия готовности продукта"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
                 
-                <Form.Item name="consequences" label="Что будет, если проблему не решать?"  rules={[{ required: true }]}>
+                <Form.Item name="short_description" label="Краткое описание"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="reason" label="Почему так происходит?"  rules={[{ required: true }]}>
+            
+                <Form.Item name="certification_type" label="Требуется ли сертификация продукта"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="objects" label="У кого болит?"  rules={[{ required: true }]}>
+                <Form.Item name="firstname" label="Имя"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="deadlines" label="Какой желательный срок решения проблемы"  rules={[{ required: true }]}>
+                <Form.Item name="surname" label="Фамилия"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="what_attempted" label="Пробовали решать?"  rules={[{ required: true }]}>
+                <Form.Item name="lastname" label="Отчество"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="contacts" label="Как с вами связаться?"  rules={[{ required: true }]}>
+                <Form.Item name="phone_number" label="Номер телефона"  rules={[{ required: true }]}>
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item name="email" label="Email"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="telegram_id" label="id телеграм"  rules={[{ required: true }]}>
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item name="email_company" label="Email компании"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="inn" label="ИНН"  rules={[{ required: true }]}>
+                    <InputNumber />
+                </Form.Item>
+            
+                <Form.Item name="presentation_link" label="Ссылка на презентацию"  rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
+                <Form.Item name="logo" label="Лого"  rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
             </Form>
