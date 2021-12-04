@@ -22,4 +22,4 @@
 *   React, MobX.
 *   Git.
 
-Демо-страница: https://kekovina.github.io/
+Демо-страница: https://kekovina.github.io/final-edFresh-client
