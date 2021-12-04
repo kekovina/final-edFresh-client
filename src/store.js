@@ -12,6 +12,35 @@ class Store{
    @action changeRole = role => this.role = role
 
    @observable projects = []
+   @observable compare = []
+
+   @action addCompare = id => { 
+      this.compare.push(id) 
+      localStorage.setItem('compare', JSON.stringify(this.compare))
+   }
+   @action removeCompare = id => {
+      this.compare.splice(this.compare.indexOf(id), 1)
+      localStorage.setItem('compare', JSON.stringify(this.compare))
+   }
+
+   @action getManyProjects = (ids) => {
+      return axios(`${serverURL}/api/projects`, {
+         params: {
+            'ids': ids
+         }
+      }).then((data) => {
+         if(data.status == 200){
+            if(data.data){
+               return data.data
+            } else {
+               throw new Error('Empty payload')
+            }
+         }
+      }).catch((err) => {
+         console.log(err)
+      })
+   }
+
    @action getProjects = () => {
       return axios(`${serverURL}/api/projects`).then((data) => {
          if(data.status == 200){
@@ -43,6 +72,44 @@ class Store{
          console.log(err)
       })
    }
+   @action getUnconfirmed = () => {
+      return axios(`${serverURL}/api/projects`, {
+         params: {
+            'statuses': [1]
+         }
+      }).then((data) => {
+         if(data.status == 200){
+            if(data.data){
+               this.projects = data.data
+               return data.data
+            } else {
+               throw new Error('Empty payload')
+            }
+         }
+      }).catch((err) => {
+         console.log(err)
+      })
+   }
+
+   @action getCompleted = (params) => {
+      return axios(`${serverURL}/api/projects`, {
+         params: {
+            'statuses': [7],
+            'categories[]': params
+         }
+      }).then((data) => {
+         if(data.status == 200){
+            if(data.data){
+               this.projects = data.data
+               return data.data
+            } else {
+               throw new Error('Empty payload')
+            }
+         }
+      }).catch((err) => {
+         console.log(err)
+      })
+   }
    @action dropProjects = () => {
       this.projects = []
    }
@@ -51,7 +118,8 @@ class Store{
    { title: 'Безопасность дорожного движения', image: safety, id: 2},
    { title: 'Цифровые технологии в транспорте', image: technology, id: 3},
    { title: 'Здоровые улицы и экология', image: eco, id: 4},
-   { title: 'Новые виды мобильности', image: mobility, id: 5}]
+   { title: 'Новые виды мобильности', image: mobility, id: 5},
+   { title: 'Неодобренные заявки', image: mobility, id: 'admin', secure: 1}]
 
    @computed get isAuth (){
       return this.role !== 'guest';
@@ -59,6 +127,10 @@ class Store{
 
    @computed get isAdmin() {
       return this.role == "admin";
+   }
+
+   @computed get isCompany(){
+      return this.role == "company";
    }
 
 }

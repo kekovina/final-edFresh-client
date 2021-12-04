@@ -1,12 +1,13 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react'
-import { Row, Col } from 'antd';
+import { Row, Col, Badge } from 'antd';
 import logo from '../img/logo.png' 
 import '../scss/NavBar.scss';
-import Button from './Button';
-import { Link } from 'react-router-dom';
+import CustomButton from './Button';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = inject('store')(observer(({ store }) => {
+    const location = useLocation()
     return (
         <div className="navbar">
             <Row justify="center">
@@ -19,7 +20,10 @@ const NavBar = inject('store')(observer(({ store }) => {
                             <div>Компании</div>
                             <div>Контакты</div>
                         </nav>
-                        {!store.isAuth ? <Button transparent>Войти</Button> : <div></div>}
+                        <div className="navbar__btn-group">
+                            {!store.isAuth ? <CustomButton transparent>Войти</CustomButton> : <div></div>}
+                            {location.pathname != '/' ? store.compare.length ? <Link to="/compare"><CustomButton transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>К сравнению <Badge count={store.compare.length}></Badge></CustomButton></Link> : null : ''}
+                        </div>
                     </div>
                 </Col>
             </Row>

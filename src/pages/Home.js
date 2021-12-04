@@ -81,13 +81,15 @@ const Home = inject('store')(observer(({ store }) => {
                     <Col sm={22} md={12} xxl={12}>
                         <div className="section-title">Проекты</div>
                         <Row gutter={[16, 20]}>
-                            {store.projectsCategory.map(({title, image, id}) => (
-
-                                <Col span={8}  key={title}>
+                            {store.projectsCategory.map(({title, image, id, secure}) => {
+                                if(!secure){
+                                    return  <Col span={8}  key={title}>
                                     <ProjectCard title={title} image={image} id={id}/>
                                 </Col>
+                                } 
+    
 
-                            ))}
+                            })}
                         </Row>
                     </Col>
                 </Row>
