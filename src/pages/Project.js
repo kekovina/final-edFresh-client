@@ -3,7 +3,8 @@ import compare from '../img/compare.svg'
 import favorite from '../img/favorite.svg'
 import request from '../img/request.svg'
 import search from '../img/search.svg'
-import { Row, Col, Skeleton, Popover, Input, Button,message } from 'antd';
+import { Row, Col, Skeleton, Popover, Input, Button, message } from 'antd';
+import { CheckCircleOutlined, UsergroupAddOutlined} from '@ant-design/icons'
 import testimage from '../img/test.png'
 import testlogo from '../img/testlogo.png'
 import DetailedBtn from '../components/DetailedBtn';
@@ -11,6 +12,7 @@ import axios from 'axios'
 import { serverURL } from '../config'
 import { data } from 'autoprefixer';
 import { inject, observer } from 'mobx-react'
+
 
 import zayavka from '../img/status/0.svg'
 import screening from '../img/status/1.svg'
@@ -51,6 +53,24 @@ const Project = inject('store')(observer(({ store, match }) => {
         }
     }
 
+    const sendCollab = () => {
+        return axios.get('https://edfresh-tg-bot.herokuapp.com/collaboration', {
+            params: { 
+                sender: 'dmitryitrus',
+                reciever: 'kekovina',
+                senderId: 247856634,
+                recieverId: 411126672 
+            }
+        }).then(data => {
+            if(data.status == 200){
+                if(data.data.success){
+                    message.success('Успешно отправлено')
+                }
+            } else {
+                message.error('Что-то пошло не так')
+            }
+        })
+    }
   
 
     useEffect(() => {
@@ -82,13 +102,22 @@ const Project = inject('store')(observer(({ store, match }) => {
                             </Col>
                             <Col span={14}>
                                 <div className="project__options-group">
-                                    <div className="project-option">
+                                    {store.isAdmin && <div className="project-option">
+                                        <CheckCircleOutlined />
+                                        <span>Одобрить</span>
+                                    </div>}
+                                    {store.isAuth && !store.isAdmin && <div className="project-option" onClick={sendCollab}>
+                                        <UsergroupAddOutlined />
+                                        <span>Коллаборация</span>
+                                    </div>}
+                                    {(store.isAdmin || store.isCompany) && <div className="project-option">
                                         <img src={request}/>
                                         <span>Запросить отчётность</span>
-                                    </div>
-                                    <div className="project-option">
-                                        <img src={compare}/>
-                                        <span>Сравнить</span>
+                                    </div>}
+                                    <div className="project-option" onClick={ store.compare.indexOf(match.params.projectId) ? store.addCompare.bind(this, match.params.projectId) : store.removeCompare.bind(this, match.params.projectId) }>
+                                        {store.compare.indexOf(match.params.projectId) == -1 ? <><img src={compare}/>
+                                        <span>Сравнить</span></> : <><CheckCircleOutlined />
+                                        <span>Добавлено к сравнению</span></>}
                                     </div>
                                     <div className="project-option">
                                         <img src={favorite}/>
@@ -131,6 +160,8 @@ const Project = inject('store')(observer(({ store, match }) => {
                                 {medals.map((item, index) => {
                                     if(index+1 < project?.status.id){
                                         return <img className="project__medal" src={item}/>
+                                    } else if( project?.status.id == 1 && index == 0){
+                                        return <img className="project__medal" src={medals[0]}/>
                                     }
                                 })}
                             </div>

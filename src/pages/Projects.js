@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react'
-import { Input, Row, Col } from 'antd';
-import Button from '../components/Button';
+import { Input, Row, Col,Badge } from 'antd';
+import CustomButton from '../components/Button';
 import { Link, useHistory } from 'react-router-dom'
 import { Radio, Empty } from 'antd';
 import ShowCaseCard from '../components/ShowCaseCard'
@@ -30,6 +30,9 @@ const Projects =  inject('store')(observer(({ store, match }) => {
                 setLoading(false)
             })
         }
+        if(match.params.category == 'admin' && store.isAdmin){
+            store.getUnconfirmed()
+        }
         return () => store.dropProjects()
     }, [match.params.category])
     const onSearch = value => console.log(value);
@@ -39,8 +42,9 @@ const Projects =  inject('store')(observer(({ store, match }) => {
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <div className="showcase__title">{ hasParams ? store.projectsCategory.filter( item => item.id == match.params.category)[0].title : 'Поиск проекта'}</div>
-                        { hasParams && store.isAuth ? <Button transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</Button> : null}
+                        <div className="showcase__title">{ hasParams && hasParams != 'admin' ? store.projectsCategory.filter( item => item.id == match.params.category)[0].title : 'Поиск проекта'}</div>
+                        {/* { store.compare.length ? <Link to="/compare"><CustomButton transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>К сравнению <Badge count={store.compare.length}></Badge></CustomButton></Link> : null} */}
+                        { hasParams && store.isAuth ? <CustomButton transparent bottomAngle={false} style={{width: 'fit-content', height: 'fit-content', border: 'none'}}>Следить за обновлением</CustomButton> : null}
                     </div>
                     <Search  
                     placeholder="Начните набирать категорию"
@@ -53,15 +57,19 @@ const Projects =  inject('store')(observer(({ store, match }) => {
             <Row justify="center">
                 <Col sm={18} md={16} xxl={12}> 
                     <Radio.Group onChange={onChangeRadio} value={radioValue} size="large" style={{marginTop: 48}}>
-                        {store.projectsCategory.map(({title, id}) => (
-                            <Radio.Button value={`${id}`} >{title}</Radio.Button>
-                        ))}
+                        {store.projectsCategory.map(({title, id, secure}) => {
+                            if(!secure){
+                                return <Radio.Button value={`${id}`} >{title}</Radio.Button>
+                            } else if(secure && store.isAdmin){
+                                return <Radio.Button value={`admin`} >{title}</Radio.Button>
+                            }
+                        })}
                         </Radio.Group>
                 </Col>
             </Row>
             <Row justify="center" style={{marginTop: 50}}>
                 <Col sm={18} md={16} xxl={12}> 
-                    <Row style={isLoading || !store.projects.length ? {height: !store.projects.length ? 100 : 20, justifyContent: 'center'} : null}>
+                    <Row gutter={[16, 24]} style={isLoading || !store.projects.length ? {height: !store.projects.length ? 100 : 20, justifyContent: 'center'} : null}>
                         { isLoading ? <Loader/> 
                         : store.projects.length ? store.projects.map( item => (
                             <Col md={12} xxl={8} key={item}>
@@ -74,7 +82,7 @@ const Projects =  inject('store')(observer(({ store, match }) => {
             <Row justify="center" style={{marginTop: 50}}>
                 <Col sm={18} md={16} xxl={12}> 
                     <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                        <Button transparent border={false} style={{width: 'fit-content', border: 'none'}}>Показать ещё</Button>
+                        <CustomButton transparent border={false} style={{width: 'fit-content', border: 'none'}}>Показать ещё</CustomButton>
                     </div>
                 </Col>
             </Row>
