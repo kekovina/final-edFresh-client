@@ -16,7 +16,11 @@ const ShowCase = inject('store')(observer(({ store, match }) => {
 
     const history = useHistory()
 
-    const filterHandler = () => console.log('e')
+    const filterHandler = () => {
+        
+        document.querySelector('.overlay').classList.add('overlay--show')
+        document.querySelector('.filter').classList.add('filter--show')
+    }
 
     const onChangeRadio = (e) => {
         history.push('/showcase/'+e.target.value)

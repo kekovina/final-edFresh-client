@@ -44,7 +44,7 @@ const Project = inject('store')(observer(({ store, match }) => {
                     short_description: inpValue
                 }).then(res=>{
                     if(res.status == 200) {
-                        setProject(res.data)
+                        setProject({...project, ...res.data})
                         message.success("Успешно сохранено")
                     }
                 })
@@ -56,10 +56,10 @@ const Project = inject('store')(observer(({ store, match }) => {
     const sendCollab = () => {
         return axios.get('https://edfresh-tg-bot.herokuapp.com/collaboration', {
             params: { 
-                sender: 'dmitryitrus',
-                reciever: 'kekovina',
-                senderId: 247856634,
-                recieverId: 411126672 
+                sender: 'kekovina',
+                reciever: 'Homi4us',
+                senderId: 411126672,
+                recieverId: 700061010 
             }
         }).then(data => {
             if(data.status == 200){
@@ -77,9 +77,7 @@ const Project = inject('store')(observer(({ store, match }) => {
         axios(`${serverURL}/api/projects/${match.params.projectId}`).then(data => {
             if(data.status == 200){
                 const project = data.data
-                
                 setProject(project)
-                console.log(project)
             } else {
                 setProject({err: 1, text: 'Ошибка загрузки данных'})
             }
@@ -155,9 +153,9 @@ const Project = inject('store')(observer(({ store, match }) => {
                     <Row>
                         <Col span={24}>
                             <div className="project__status-title section-title">Статус проекта:</div>
-                            <div className="project__status-value">{project?.status.name ?? <Skeleton active={true}/>}</div>
+                            <div className="project__status-value">{project?.status?.name ?? <Skeleton active={true}/>}</div>
                             <div className="project__medal-status">
-                                {medals.map((item, index) => {
+                                {project?.status?.name && medals.map((item, index) => {
                                     if(index+1 < project?.status.id){
                                         return <img className="project__medal" src={item}/>
                                     } else if( project?.status.id == 1 && index == 0){

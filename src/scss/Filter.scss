@@ -1,0 +1,35 @@
+.filter{
+    position: fixed;
+    z-index: 1000;
+    width: 300px;
+    background-color: white;
+    height: 100%;
+    top: 0;
+    right: 0;
+    margin-right: -300px;
+    transform: translateX(0);
+    transition: .25s linear;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    &--show{
+        transition: .25s linear;
+        transform: translateX(-300px)
+    }
+}
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    transition: .1s linear;
+    display: none;
+    &--show{
+       display: block;
+       transition: .1s linear;
+    }
+}

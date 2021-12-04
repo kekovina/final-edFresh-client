@@ -113,6 +113,9 @@ class Store{
    @action dropProjects = () => {
       this.projects = []
    }
+   @action setProjects = (projects) => {
+      this.projects = projects
+   }
 
    projectsCategory = [{ title: 'Доступный и комфортный городской транспорт', image: comfort, id: 1},
    { title: 'Безопасность дорожного движения', image: safety, id: 2},

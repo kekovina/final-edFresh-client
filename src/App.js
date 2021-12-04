@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'mobx-react'
 import mainStore from './store'
 import RoleSelector from './components/RoleSelector'
@@ -12,10 +12,17 @@ import Project from './pages/Project'
 import Compare from './pages/Compare'
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
-
+import Filter from './components/Filter';
 
 function App(){
+    useEffect(() => {
+        document.querySelector('.overlay').addEventListener('click', () => {
+            document.querySelector('.overlay').classList.remove('overlay--show')
+            document.querySelector('.filter').classList.remove('filter--show')
+        })
+    }, [])
     return <Provider store={mainStore}>
+        <Filter/>
         <div>
             <RoleSelector/>
             <NavBar/>
@@ -34,6 +41,7 @@ function App(){
             </Switch>
         </main>
         <Footer/>
+        <div className="overlay"></div>
     </Provider>
 }
 
