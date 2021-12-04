@@ -38,6 +38,14 @@ const Compare = inject('store')(observer(({ store }) => {
             const a = {}
             if(typeof d[item] == 'object'){
                 a[d.name.toLowerCase()] = 'dd'
+                a.children = Object.keys(d[item]).map(subitem => ({properties: subitem}))
+                
+                a.children = a.children.map(i => {
+                    i[d.name.toLowerCase()] = d[item][i.properties]
+                    
+                    return i
+                })
+                console.log(a.children)
                 // a.children = {}
                 // a.children[d.name.toLowerCase()] = d[item]
             } else {
