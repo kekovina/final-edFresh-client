@@ -117,7 +117,16 @@ const Home = inject('store')(observer(({ store }) => {
                 <Form.Item name="company_name" label="Название команды/организации" rules={[{ required: true }]}>
                     <Input.TextArea />
                 </Form.Item>
+                <Form.Item name="name" label="Название проекта" rules={[{ required: true }]}>
+                    <Input.TextArea />
+                </Form.Item>
                 <Form.Item name="stages_of_ready_id" label="Стадия готовности продукта"  rules={[{ required: true }]}>
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item name="category_id" label="Id категории"  rules={[{ required: true }]}>
+                    <InputNumber />
+                </Form.Item>
+                <Form.Item name="subcategory_id" label="Id подкатегории"  rules={[{ required: true }]}>
                     <InputNumber />
                 </Form.Item>
                 
