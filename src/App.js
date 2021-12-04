@@ -13,6 +13,8 @@ import Compare from './pages/Compare'
 import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import Filter from './components/Filter';
+import CompanyForm from './pages/CompanyForm';
+
 
 function App(){
     useEffect(() => {
@@ -38,6 +40,7 @@ function App(){
                 <Route exact path="/company" component={Home}/>
                 <Route exact path="/rates" component={Rates}/>
                 <Route exact path="/compare" component={Compare}/>
+                <Route exact path="/companies" component={CompanyForm}/>
             </Switch>
         </main>
         <Footer/>

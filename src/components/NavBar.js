@@ -17,7 +17,7 @@ const NavBar = inject('store')(observer(({ store }) => {
                         <nav>
                             <Link to="/showcase"><div>Витрина проектов</div></Link>
                             <div>Стартапам</div>
-                            <div>Компании</div>
+                            <Link to = "/companies"><div>Компании</div></Link>
                             <div>Контакты</div>
                         </nav>
                         <div className="navbar__btn-group">
