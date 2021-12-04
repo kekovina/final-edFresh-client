@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6991cd498bfd2bdfed9cb416f7b3ec9c",
+    "revision": "f72c238f779d233165ef4d023be64327",
     "url": "/final-edFresh-client/index.html"
   },
   {
-    "revision": "c40745c0a2d63c0472a2",
+    "revision": "7d576aa0d9468c393260",
     "url": "/final-edFresh-client/static/css/2.ad1b7169.chunk.css"
   },
   {
-    "revision": "efa3894b3c19fd993196",
+    "revision": "3eacb35241edb0631e76",
     "url": "/final-edFresh-client/static/css/main.610e4560.chunk.css"
   },
   {
-    "revision": "c40745c0a2d63c0472a2",
-    "url": "/final-edFresh-client/static/js/2.4250c94e.chunk.js"
+    "revision": "7d576aa0d9468c393260",
+    "url": "/final-edFresh-client/static/js/2.98ce283d.chunk.js"
   },
   {
     "revision": "1f8299b5be7fdc9f8230865fd39e80dc",
-    "url": "/final-edFresh-client/static/js/2.4250c94e.chunk.js.LICENSE.txt"
+    "url": "/final-edFresh-client/static/js/2.98ce283d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "efa3894b3c19fd993196",
-    "url": "/final-edFresh-client/static/js/main.851c53a9.chunk.js"
+    "revision": "3eacb35241edb0631e76",
+    "url": "/final-edFresh-client/static/js/main.8dc6464c.chunk.js"
   },
   {
     "revision": "d3c04d3f0cc6b9604c36",

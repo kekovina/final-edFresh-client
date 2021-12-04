@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/final-edFresh-client/static/css/main.610e4560.chunk.css",
-    "main.js": "/final-edFresh-client/static/js/main.851c53a9.chunk.js",
+    "main.js": "/final-edFresh-client/static/js/main.8dc6464c.chunk.js",
     "runtime-main.js": "/final-edFresh-client/static/js/runtime-main.5a0dbb9a.js",
     "static/css/2.ad1b7169.chunk.css": "/final-edFresh-client/static/css/2.ad1b7169.chunk.css",
-    "static/js/2.4250c94e.chunk.js": "/final-edFresh-client/static/js/2.4250c94e.chunk.js",
+    "static/js/2.98ce283d.chunk.js": "/final-edFresh-client/static/js/2.98ce283d.chunk.js",
     "index.html": "/final-edFresh-client/index.html",
-    "precache-manifest.9c4b6e0fbd990bdf7ff29ca6b22ea8d2.js": "/final-edFresh-client/precache-manifest.9c4b6e0fbd990bdf7ff29ca6b22ea8d2.js",
+    "precache-manifest.b9289c5f03f00f4fe26eb32469c07f84.js": "/final-edFresh-client/precache-manifest.b9289c5f03f00f4fe26eb32469c07f84.js",
     "service-worker.js": "/final-edFresh-client/service-worker.js",
-    "static/js/2.4250c94e.chunk.js.LICENSE.txt": "/final-edFresh-client/static/js/2.4250c94e.chunk.js.LICENSE.txt",
+    "static/js/2.98ce283d.chunk.js.LICENSE.txt": "/final-edFresh-client/static/js/2.98ce283d.chunk.js.LICENSE.txt",
     "static/media/0.svg": "/final-edFresh-client/static/media/0.097d22a0.svg",
     "static/media/1.svg": "/final-edFresh-client/static/media/1.13af0818.svg",
     "static/media/2.svg": "/final-edFresh-client/static/media/2.1b701cb3.svg",
@@ -38,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.5a0dbb9a.js",
     "static/css/2.ad1b7169.chunk.css",
-    "static/js/2.4250c94e.chunk.js",
+    "static/js/2.98ce283d.chunk.js",
     "static/css/main.610e4560.chunk.css",
-    "static/js/main.851c53a9.chunk.js"
+    "static/js/main.8dc6464c.chunk.js"
   ]
 }
